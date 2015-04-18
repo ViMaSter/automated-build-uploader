@@ -1,6 +1,6 @@
-:: Move to root folder
+:: Move to project-root folder
 pushd %~dp0
-cd ..
+cd ../..
 
 :: Save current commit hash
 for /f %%i in ('git rev-parse HEAD') do set commithash=%%i
@@ -26,3 +26,4 @@ CALL "%ue4path%\4.7\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -rocket -no
 
 :: Establish ftp-connection
 ftp -s:%~dp0\credentials.dat
+ 
