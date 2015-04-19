@@ -16,7 +16,7 @@ for /f "tokens=2-4 delims=/ " %%a in ('date /t') do (set currentdate=%%c-%%a-%%b
 "E:/Program Files (x86)/Unity5/Editor/Unity.exe" -quit -projectPath "%~dp0/../../../0_unity" -batchmode -nographics -buildOSXUniversalPlayer  "Build/automated/%currentdate%_%commithash%/osx/wej5.exe"
 
 :: Copy to temporary folder to prevent "too long filename"-errors
-xcopy "Build/automated/%currentdate%_%commithash%" "C:/tmp/abu" /s /e /i
+robocopy "Build/automated/%currentdate%_%commithash%" "C:/tmp/abu" /MIR /log:backup_log.txt
 
 :: Zip them up
 "C:/Program Files (x86)/7-Zip/7z.exe" a -tzip "%~dp0/../../../0_unity/Build/automated/recent/win_x86.zip" "C:/tmp/abu/win_x86/"
@@ -24,7 +24,7 @@ xcopy "Build/automated/%currentdate%_%commithash%" "C:/tmp/abu" /s /e /i
 "C:/Program Files (x86)/7-Zip/7z.exe" a -tzip "%~dp0/../../../0_unity/Build/automated/recent/osx.zip" "C:/tmp/abu/osx/"
 
 :: Special case: Directly upload the web build
-xcopy "C:/tmp/abu/web" "%~dp0/../../../0_unity/Build/automated/recent/web" /s /e /i /y
+robocopy "C:/tmp/abu/web" "%~dp0/../../../0_unity/Build/automated/recent/web" /MIR /log:backup_log.txt
 
 
 :: Generate info.txt
