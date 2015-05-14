@@ -16,7 +16,7 @@ CALL "%ue4path%/4.7/Engine/Build/BatchFiles/RunUAT.bat" BuildCookRun -rocket -no
 robocopy "%~dp0/../../../../builds/automated/%currentdate%_%commithash%" "C:/tmp/abu" /MIR /log:backup_log.txt
 
 :: Zip them up
-"C:/Program Files (x86)/7-Zip/7z.exe" a -tzip "%~dp0/../../../../builds/automated/recent/recent.zip" "C:/tmp/abu"
+"%7zippath%/7z.exe" a -tzip "%~dp0/../../../../builds/automated/recent/recent.zip" "C:/tmp/abu"
 
 rmdir "C:/tmp/abu" /s /q
 
@@ -26,7 +26,7 @@ rmdir "C:/tmp/abu" /s /q
 @echo SHA-1 Hash of commit: %commithash%>> "%~dp0/../../../../builds/automated/recent/info.txt"
 
 :: Add info.txt to zip-files
-"C:/Program Files (x86)/7-Zip/7z.exe" a -tzip "%~dp0/../../../../builds/automated/recent/recent.zip" "%~dp0/../../../../builds/automated/recent/info.txt"
+"%7zippath%/7z.exe" a -tzip "%~dp0/../../../../builds/automated/recent/recent.zip" "%~dp0/../../../../builds/automated/recent/info.txt"
 
 :: Establish ftp-connection
 ftp -s:%~dp0/credentials.dat
