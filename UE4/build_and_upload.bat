@@ -30,3 +30,6 @@ rmdir "C:/tmp/abu" /s /q
 
 :: Establish ftp-connection
 ftp -s:%~dp0/credentials.dat
+ 
+:: Move back to start folder
+cd %~dp0
