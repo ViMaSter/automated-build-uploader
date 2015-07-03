@@ -17,6 +17,9 @@ CALL "%ue4path%/4.8/Engine/Build/BatchFiles/RunUAT.bat" BuildCookRun -rocket -co
 robocopy "%~dp0../../../../builds/automated/%currentdate%_%commithash%" "C:/tmp/abu" /MIR /log:backup_log.txt
 
 
+:: Remove .tmp-file which is created, if the last zip-operation failed
+del "%~dp0../../../../builds/automated/recent/recent.zip.tmp"
+
 :: Zip them up
 "%SEVENZIPPATH%/7z.exe" a -tzip "%~dp0../../../../builds/automated/recent/recent.zip" "C:/tmp/abu"
 
